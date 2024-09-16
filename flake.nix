@@ -36,6 +36,7 @@
           pkgs.stdenv.cc.cc.lib
         ];
         installPhase = ''
+          set -x
           echo "Contents of the current directory:"
           ls -R
           echo "Trying to find wkhtmltopdf binary:"
