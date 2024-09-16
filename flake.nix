@@ -36,8 +36,11 @@
           pkgs.stdenv.cc.cc.lib
         ];
         installPhase = ''
-          mkdir -p $out
-          cp -rv . $out/
+          echo "Contents of the current directory:"
+          ls -R
+          echo "Trying to find wkhtmltopdf binary:"
+          find . -name wkhtmltopdf
+          mkdir -p $out/bin
         '';
       };
     }
