@@ -13,10 +13,6 @@
     packages = forAllSystems (system:
     let
       pkgs = nixpkgs.legacyPackages.${system};
-      pkgs_libjpeg_8d = import (builtins.fetchTarball {
-        url = "https://github.com/NixOS/nixpkgs/archive/19f768a97808da4c8700ae24513ab557801be12c.tar.gz";
-        sha256 = "0a8wh2nd964jcinsrrawg8909d13qz7a4s1g5vk3xi55iv56w17x";
-      }) { inherit system; };
     in {
       default = pkgs.stdenv.mkDerivation {
         name = "wkhtmltopdf";
@@ -27,7 +23,7 @@
         unpackCmd = "${pkgs.dpkg}/bin/dpkg-deb -x $curSrc .";
         nativeBuildInputs = [ pkgs.autoPatchelfHook ];
         buildInputs = [
-          pkgs_libjpeg_8d.libjpeg_original
+          pkgs.libjpeg_original
           pkgs.freetype
           pkgs.xorg.libX11
           pkgs.xorg.libXrender
